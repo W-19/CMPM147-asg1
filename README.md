@@ -5,6 +5,6 @@ For this assignment I made two particle systems which react to music through p5.
 
 The second particle system works similarly but spawns the particles in a circle around its center, gives them an outward velocity which is again proportional to the amplitude of their respective bin but much slower than the first one, and gives them a lifetime of 60 ticks instead of 1. It only emits every 20 ticks since the particles last 60 times as long as in the first system so emmitting too many would cause lots of lag. These particles are larger than those of the other system, are orange, and fade quickly in and slowly out of existence. The result kind of looks like a star or something.
 
-The highest-register frequency bins don't seem to be used, since the corresponding particles don't move. I'm not entirely sure why this is, but I decided to leave it as is for the time being.
+Particle movement is simulated by continuously drawing circles at the particles' positions, clearing the screen each frame. The highest-register frequency bins don't seem to be used, since the corresponding particles don't move. I'm not entirely sure why this is, but I decided to leave it as is for the time being.
 
 The song is "Another Heaven" by Kanako Ito for the Steins;Gate OST.
