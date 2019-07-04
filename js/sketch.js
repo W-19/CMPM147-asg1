@@ -1,8 +1,8 @@
 time = 0; // Can be accessed by anything to keep track of the number of ticks elapsed globally. Useful for modulus operations.
 
 function preload() {
-  soundFormats('ogg', 'mp3');
-  song = loadSound('assets/Another Heaven.ogg');
+  soundFormats('wav', 'ogg');
+  song = loadSound('assets/Another Heaven.wav');
 }
 
 function setup(){
@@ -32,21 +32,21 @@ function setup(){
 						 g: 255*((400+particleX/800)%800),
 						 b: 255*particleX/800,
 						 a: 255},
-				1);
+				1, false);
 			}
 		}
 	}));
 
   	
 	// this particle system emits fewer, slower particles and does so in a radial fashion
-	// Max 1024 particlex because that happens to be the spectrum length
-	particleSystems.push(new ParticleSystem(575, 200, 1024, function(fft){
+	// Note that 6144 = 1024 * 6, and  1024 happens to be the spectrum length, so max 6 "waves" visible at once
+	particleSystems.push(new ParticleSystem(575, 250, 6144, function(fft){
 		// process all the existing particles first
 		for(let particle of this.particles){
 			particle.tick();
 		}
 
-		if(time%5 != 0) return; // Skip 80% of spawns to cut down on the number of particles
+		if(time%20 != 0) return; // Skip 80% of spawns to cut down on the number of particles
 
 		var spectrum = fft.analyze();
 		var particleX, particleY, p;
@@ -62,7 +62,7 @@ function setup(){
 						 g: 127,
 						 b: 0,
 						 a: 255},
-				60);
+				60, true);
 			}
 		}
 	}));
